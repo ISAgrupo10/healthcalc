@@ -6,28 +6,30 @@ public class HealthCalcImpl implements HealthCalc {
 
     @Override
     public String bmiClassification(double bmi) throws InvalidHealthDataException {
-        if (bmi < 0) {
-            throw new InvalidHealthDataException("BMI cannot be negative.");
+        if (bmi <= 0) {
+            throw new InvalidHealthDataException("BMI must be greater than 0.");
         }
         if (bmi > 150) {
             throw new InvalidHealthDataException("BMI must be within a possible biological range [0-150].");
         }
-        String result = "Obesity";
-        // if (bmi < 18.5) {
-        //     result = "Underweight";
-        // } else if (bmi >= 18.5 && bmi < 25) {
-        //     result = "Normal weight";
-        // } else if (bmi >= 25 && bmi < 30) {
-        //     result = "Overweight";
-        // }
-        if (bmi < 18.5) {
-            result = "Underweight";
-        } else if (bmi < 25) {
-            result = "Normal weight";
-        } else if (bmi < 30) {
-            result = "Overweight";
-        }
-        return result;
+    
+    if (bmi < 16) {
+        return "Severe thinness";
+    } else if (bmi < 17) {
+        return "Moderate thinness";
+    } else if (bmi < 18.5) {
+        return "Mild thinness";
+    } else if (bmi < 25) {
+        return "Normal";
+    } else if (bmi < 30) {
+        return "Overweight";
+    } else if (bmi < 35) {
+        return "Obese class I";
+    } else if (bmi < 40) {
+        return "Obese class II";
+    } else {
+        return "Obese class III";
+    }
     }
 
     @Override
