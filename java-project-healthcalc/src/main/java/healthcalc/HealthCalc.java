@@ -16,11 +16,11 @@ public interface HealthCalc {
  	 * - Severe thinness: BMI < 16
  	 * - Moderate thinness: 16 <= BMI < 17
  	 * - Mild thinness: 17 <= BMI < 18.5
- 	 * - Normal: 18.5 <= BMI < 25
+ 	 * - Normal weight: 18.5 <= BMI < 25
  	 * - Overweight: 25 <= BMI < 30
- 	 * - Obese class I: 30 <= BMI < 35
- 	 * - Obese class II: 35 <= BMI < 40
- 	 * - Obese class III: BMI >= 40
+ 	 * - Obese Class I: 30 <= BMI < 35
+ 	 * - Obese Class II: 35 <= BMI < 40
+ 	 * - Obese Class III: BMI >= 40
 	 *
 	 * @param bmi	Body Mass Index of the person (kg/m2).
 	 * @return	  	The BMI classification of the person.

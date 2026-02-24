@@ -20,15 +20,15 @@ public class HealthCalcImpl implements HealthCalc {
     } else if (bmi < 18.5) {
         return "Mild thinness";
     } else if (bmi < 25) {
-        return "Normal";
+        return "Normal weight";
     } else if (bmi < 30) {
         return "Overweight";
     } else if (bmi < 35) {
-        return "Obese class I";
+        return "Obese Class I";
     } else if (bmi < 40) {
-        return "Obese class II";
+        return "Obese Class II";
     } else {
-        return "Obese class III";
+        return "Obese Class III";
     }
     }
 
