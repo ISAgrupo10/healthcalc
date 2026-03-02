@@ -13,10 +13,14 @@ public interface HealthCalc {
 	/**
 	 * Calculate the BMI classification of a person.
 	 * The BMI classification is based on the following table:
-	 * Underweight: BMI < 18.5
-	 * Normal weight: 18.5 <= BMI < 25
-	 * Overweight: 25 <= BMI < 30
-	 * Obesity: BMI >= 30
+ 	 * - Severe thinness: BMI < 16
+ 	 * - Moderate thinness: 16 <= BMI < 17
+ 	 * - Mild thinness: 17 <= BMI < 18.5
+ 	 * - Normal weight: 18.5 <= BMI < 25
+ 	 * - Overweight: 25 <= BMI < 30
+ 	 * - Obese Class I: 30 <= BMI < 35
+ 	 * - Obese Class II: 35 <= BMI < 40
+ 	 * - Obese Class III: BMI >= 40
 	 *
 	 * @param bmi	Body Mass Index of the person (kg/m2).
 	 * @return	  	The BMI classification of the person.

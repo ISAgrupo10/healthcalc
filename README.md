@@ -242,13 +242,26 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
 
 <details>
 <summary><b>Pruebas de Clasificación del Estado de Salud basado en el IMC/BMI</b></summary>
-Para cada categoría, probamos valores que están justo en el límite para asegurar que el cambio de etiqueta es exacto:  
 
-* **Peso bajo (Underweight):** Se comprueba con valores por debajo de 18.5.
-* **Peso normal (Normal weight):** Se comprueba con valores desde 18.5 hasta justo antes de 25.
-* **Sobrepeso (Overweight):** Se comprueba con valores desde 25 hasta justo antes de 30.
-* **Obesidad (Obesity):** Se comprueba con valores desde 30 en adelante.
-* **Seguridad:** Se rechazan clasificaciones para resultados de IMC negativos o absurdamente altos (más de 150).
+* **Clasificación correcta por rangos:** Se comprueba que, al introducir valores de IMC dentro de cada intervalo, la etiqueta devuelta sea la adecuada según la clasificación.
+
+    * **Delgadez severa (Severe thinness):** IMC menor que 16.
+    * **Delgadez moderada (Moderate thinness):** IMC desde 16 hasta justo antes de 17.
+    * **Delgadez leve (Mild thinness):** IMC desde 17 hasta justo antes de 18.5.
+    * **Normal (Normal):** IMC desde 18.5 hasta justo antes de 25.
+    * **Sobrepeso (Overweight):** IMC desde 25 hasta justo antes de 30.
+    * **Obesidad tipo I (Obese class I):** IMC desde 30 hasta justo antes de 35.
+    * **Obesidad tipo II (Obese class II):** IMC desde 35 hasta justo antes de 40.
+    * **Obesidad tipo III (Obese class III):** IMC desde 40 en adelante.
+
+* **Pruebas de valores frontera:** Se verifica que el sistema cambie correctamente de etiqueta cuando el IMC está exactamente en los límites entre categorías (por ejemplo, 16, 18.5, 25, 30, 35 y 40).
+
+* **Pruebas de valores intermedios:** Se comprueba el comportamiento con valores representativos dentro del interior de cada intervalo para asegurar la estabilidad de la clasificación.
+
+* **Protección ante datos inválidos:**  
+    * El sistema debe rechazar valores de IMC negativos.  
+    * El sistema debe rechazar valores de IMC nulos (igual a 0).  
+    * El sistema debe rechazar valores de IMC clínicamente incoherentes o absurdamente altos (por ejemplo, superiores a 150).
 
 </details>
 
