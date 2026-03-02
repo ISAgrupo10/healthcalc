@@ -37,4 +37,32 @@ public interface HealthCalc {
 	 * @throws Exception
 	 */
 	public double bmi(double weight, double height) throws InvalidHealthDataException;
+
+	/**
+ * Calculate the Visceral Adiposity Index (VAI) of a person.
+ * 
+ * The VAI is calculated using different formulas depending on sex:
+ * 
+ * For men:
+ * VAI = [CC / (39.68 + (1.88 * BMI))] × (TG / 1.03) × (1.31 / HDL)
+ * 
+ * For women:
+ * VAI = [CC / (36.58 + (1.89 * BMI))] × (TG / 0.81) × (1.52 / HDL)
+ * 
+ * Where:
+ * - sex must be "m" (male) or "f" (female)
+ * - BMI is Body Mass Index (kg/m2)
+ * - CC is Waist Circumference (cm)
+ * - TG is Triglycerides (mmol/L)
+ * - HDL is HDL cholesterol (mmol/L)
+ * 
+ * @param sex   Sex of the person ("m" or "f")
+ * @param bmi   Body Mass Index (kg/m2)
+ * @param cc    Waist circumference (cm)
+ * @param tg    Triglycerides (mmol/L)
+ * @param hdl   HDL cholesterol (mmol/L)
+ * @return      The Visceral Adiposity Index (VAI)
+ * @throws InvalidHealthDataException if parameters are invalid
+ */
+public double vai(String sex, double bmi, double cc, double tg, double hdl) throws InvalidHealthDataException;
 }
