@@ -241,6 +241,31 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
 </details>
 
 <details>
+<summary><b>Pruebas de Cálculo del Peso Corporal Ideal (IBW - Lorentz)</b></summary>
+
+* **Cálculos correctos:** Se comprueba que el cálculo devuelve el valor esperado usando la fórmula de Lorentz tanto para hombres como para mujeres con una altura estándar.
+* **Validación de sexo:** El sistema debe lanzar un error si se introduce un identificador de sexo no válido (distinto de 'm' o 'f', como letras mayúsculas, otros caracteres o cadenas vacías).
+* **Protección ante datos biológicamente imposibles:**
+    * El sistema rechaza alturas por debajo del límite biológico mínimo (menores a 30 cm).
+    * El sistema rechaza alturas por encima del límite biológico máximo (mayores a 300 cm).
+
+</details>
+
+<details>
+<summary><b>Pruebas de Cálculo del Índice de Adiposidad Visceral (VAI)</b></summary>
+
+* **Cálculos correctos:** Se verifica que la fórmula se aplique correctamente tanto para hombres como para mujeres con datos de salud normales.
+* **Validación de sexo:** Al igual que en el IBW, se rechazan entradas de sexo que no sean estrictamente 'm' o 'f'.
+* **Protección ante valores nulos o negativos:** Se verifica que el sistema lance un error si el IMC, la circunferencia de la cintura (CC), los triglicéridos (TG) o el colesterol (HDL) son iguales o menores a cero.
+* **Protección ante límites biológicos excedidos:** El sistema debe bloquear el cálculo y avisar al usuario si los parámetros superan los límites humanos realistas:
+    * IMC mayor a 150.
+    * Circunferencia de cintura mayor a 300 cm.
+    * Triglicéridos mayores a 20 mmol/L.
+    * Colesterol HDL mayor a 5 mmol/L.
+
+</details>
+
+<details>
 <summary><b>Pruebas de Clasificación del Estado de Salud basado en el IMC/BMI</b></summary>
 
 * **Clasificación correcta por rangos:** Se comprueba que, al introducir valores de IMC dentro de cada intervalo, la etiqueta devuelta sea la adecuada según la clasificación.
@@ -283,7 +308,6 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
 
 </details>
 
-
 ## Instalación y ejecución
 
 <details>
@@ -312,7 +336,6 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
 
 </details>
 
-
 <details>
 <summary><b>Java</b></summary>
 
@@ -328,10 +351,25 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
    `cd healthcalc/java-project-healthcalc`
 3. Compilar con Maven: `mvn clean compile`
 
-
 ### Ejecución
 - Ejecutar la aplicación: Clic en Run usando el IDE.
 - Ejecutar los tests: Clic en Run Tests usando el IDE o con Maven: `mvn test`
 - Ejecutar los tests con informe de cobertura (previamente configurado en pom.xml): `mvn test`
+
+</details>
+
+---
+
+## Resultados de Pruebas y Cobertura (Práctica 1)
+
+Siguiendo la metodología de Desarrollo Dirigido por Tests (TDD) y el **patrón AAA (Arrange, Act, Assert)**, se han implementado y superado todos los casos de prueba definidos anteriormente para las métricas requeridas.
+
+### Ejecución de Tests
+Se han ejecutado un total de 73 tests exitosamente, cubriendo las métricas de BMI, IBW y VAI.
+![Resultado de la ejecución de los tests](resources/p1/tests.png)
+
+### Informe de Cobertura
+Se ha logrado una cobertura de código del 100%, tal como se muestra en el informe generado por Jacoco:
+![Informe de cobertura al 100%](resources/p1/cobertura.png)
 
 </details>
