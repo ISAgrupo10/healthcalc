@@ -17,6 +17,9 @@ public class Main {
             System.out.print("> Introduce tu sexo ('m' para hombre, 'f' para mujer): ");
             String sex = scanner.next().toLowerCase();
 
+            System.out.print("> Introduce tu edad (ej. 25): ");
+            int age = scanner.nextInt();
+
             System.out.print("> Introduce el peso en kilogramos (ej. 70,5): ");
             double weight = scanner.nextDouble();
 
@@ -39,14 +42,16 @@ public class Main {
 
             double bmi = healthCalc.bmi(weight, heightMeters);
             String classification = healthCalc.bmiClassification(bmi);
-            double ibw = healthCalc.idealBodyWeight(heightCm, sex);
+            double ibw = healthCalc.idealWeight(heightCm, sex); 
             double vai = healthCalc.vai(sex, bmi, cc, tg, hdl);
+            double bmr = healthCalc.basalMetabolicRate(weight, heightCm, age, sex);
 
             // Resultados:
             System.out.printf("1. IMC (BMI): %.2f kg/m2\n", bmi);
             System.out.println("   Clasificación: " + classification);
             System.out.printf("2. Peso Ideal (IBW - Lorentz): %.2f kg\n", ibw);
             System.out.printf("3. Índice de Adiposidad Visceral (VAI): %.2f\n", vai);
+            System.out.printf("4. Tasa Metabólica Basal (BMR): %.2f kcal/día\n", bmr);
             System.out.println("------------------------------------------");
 
         } catch (InvalidHealthDataException e) {
