@@ -1,0 +1,39 @@
+Caso de Uso: Calcular IW (Ideal Weight / Peso Ideal)
+ID: CU-02
+Actor principal: Médico
+Ámbito: Calculadora de Salud
+Nivel: Objetivo de Usuario
+
+Descripción:
+El médico quiere calcular el peso ideal (IW) de un paciente. El sistema debe validar que los datos introducidos (sexo y altura) tengan sentido físico y realizar el cálculo utilizando la fórmula correspondiente.
+
+Interesados:
+- Médico: Quiere conocer el peso ideal del paciente para poder orientarle sobre su estado físico y recomendaciones de salud.
+- Paciente: Quiere conocer su peso ideal para entender mejor su situación corporal.
+
+Precondiciones:
+- El sistema (HealthCalc) debe estar activo.
+- El médico debe tener acceso al sistema.
+
+Disparador:
+El médico solicita calcular el IW (peso ideal).
+
+Garantía de éxito:
+El sistema devuelve el valor correcto del peso ideal del paciente.
+
+Garantía mínima:
+El sistema devuelve un mensaje de error indicando que los datos introducidos no son válidos.
+
+Escenario principal de éxito:
+1. El médico introduce la altura del paciente en centímetros.
+2. El médico introduce el sexo del paciente ('m' para masculino o 'f' para femenino).
+3. El sistema valida que los datos introducidos tienen sentido físico.
+4. El sistema calcula el peso ideal utilizando la fórmula correspondiente.
+5. El sistema muestra el peso ideal calculado al médico.
+
+Extensiones:
+1a. Altura inválida:
+El sistema muestra un mensaje indicando que la altura introducida no es válida y solicita un nuevo valor. Vuelta al paso 1.
+
+2a. Sexo inválido:
+El sistema muestra un mensaje indicando que el sexo debe ser 'm' (masculino) o 'f' (femenino) y solicita un nuevo valor. Vuelta al paso 2.
