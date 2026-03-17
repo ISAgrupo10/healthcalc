@@ -376,11 +376,15 @@ Se ha logrado una cobertura de código del 100%, tal como se muestra en el infor
 
 ### Casos de uso
 
-A continuación se presenta el diagrama de Casos de Uso del sistema HealthCalc. Se destacan en un color los casos de uso ya implementados en la Práctica 1 y en otro color el resto de funcionalidades no implementadas.
+A continuación se presenta el diagrama de Casos de Uso del sistema **HealthCalc**.
+
+- 🔵 **Azul:** Casos de uso implementados en la **Práctica 1**.
+- 🟠 **Naranja:** Funcionalidades futuras de la calculadora que aún no están implementadas.
+- 🟣 **Morado:** Nuevo caso de uso añadido en la **Práctica 2**.
 
 ![Diagrama de Casos de Uso](./doc/HealthCalc.jpg)
 
-#### Especificaciones detalladas
+#### Especificaciones de los casos de uso implementados en la Práctica 1
 
 Puede consultar el detalle de los casos de uso implementados en los siguientes enlaces:
 

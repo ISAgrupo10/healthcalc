@@ -3,7 +3,7 @@ ID: CU-03
 Actor principal: Médico
 Ámbito: Calculadora de Salud
 Nivel: Objetivo de Usuario
-Descripción: El médico quiere calcular el Índice de Adiposidad Visceral (VAI) de un paciente. El sistema debe validar que los datos (sexo, IMC, circunferencia de cintura, triglicéridos y colesterol HDL) tengan sentido físico y realizar el cálculo de forma adecuada según el sexo del paciente.
+Descripción: El médico quiere calcular el Índice de Adiposidad Visceral (VAI) de un paciente. El sistema debe validar que los datos (sexo, IMC, circunferencia de la cintura, triglicéridos y colesterol HDL) tengan sentido físico y realizar el cálculo de forma adecuada según el sexo del paciente.
 Interesados:
 - Médico: Quiere conocer el VAI del paciente para poder orientarle sobre su salud y riesgo cardiometabólico.
 - Paciente: Conocer su índice de adiposidad para comprender su riesgo cardiovascular.
@@ -17,7 +17,7 @@ Garantía de éxito: El sistema devuelve el VAI correcto del paciente.
 Garantía mínima: El sistema devuelve un mensaje de error.
 
 Escenario principal de éxito:
-1. El médico introduce el sexo, IMC, circunferencia de la cintura (CC), triglicéridos (TG) y colesterol HDL del paciente en el sistema.
+1. El médico introduce el sexo, IMC, circunferencia de cintura (CC), triglicéridos (TG) y colesterol HDL del paciente en el sistema.
 2. El sistema valida que los datos introducidos tienen sentido físico y biológico.
 3. El sistema calcula el VAI utilizando la fórmula matemática correspondiente según el sexo introducido.
 4. El sistema muestra el valor VAI correcto del paciente al médico.

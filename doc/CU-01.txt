@@ -12,7 +12,7 @@ Precondiciones:
 - El sistema (HealthCalc) debe estar activo.
 - El médico debe tener acceso al sistema.
 
-Disparador: El médico solicita Calcular IMC.
+Disparador: El médico solicita Calcular el IMC.
 Garantía de éxito: El sistema devuelve el IMC correcto del paciente.
 Garantía minima: El sistema devuelve un mensaje de error.
 
@@ -20,7 +20,7 @@ Escenario principal de éxito:
 1. El médico introduce la altura y peso del paciente en el sistema.
 2. El sistema valida que los datos introducidos tienen sentido físico.
 3. El sistema calcula el IMC utilizando su correspondiente fórmula (IMC = peso / altura²)
-4. El sistema muestra el IMC correcto del paciente al médico.
+4. El sistema muestra el el valor correcto del IMC del paciente al médico.
 
 Extensiones:
 2a. Altura inválida: El sistema muestra un mensaje que indica que la altura introducida no es válida y solicita una nueva altura. Vuelta al paso 1.
