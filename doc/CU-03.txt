@@ -12,7 +12,7 @@ Precondiciones:
 - El sistema (HealthCalc) debe estar activo.
 - El médico debe tener acceso al sistema.
 
-Disparador: El médico solicita Calcular VAI.
+Disparador: El médico solicita calcular VAI.
 Garantía de éxito: El sistema devuelve el VAI correcto del paciente.
 Garantía mínima: El sistema devuelve un mensaje de error.
 
