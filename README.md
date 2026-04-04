@@ -360,16 +360,79 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
 
 ---
 
-## Resultados de Pruebas y Cobertura (Práctica 1)
+## Resultados de pruebas, BDD y cobertura
 
-Siguiendo la metodología de Desarrollo Dirigido por Tests (TDD) y el **patrón AAA (Arrange, Act, Assert)**, se han implementado y superado todos los casos de prueba definidos anteriormente para las métricas requeridas.
+Siguiendo la metodología TDD y el patrón **AAA (Arrange, Act, Assert)**, el proyecto combina pruebas unitarias (JUnit 5) y pruebas funcionales BDD (Cucumber).
 
-### Ejecución de Tests
-Se han ejecutado un total de 73 tests exitosamente, cubriendo las métricas de BMI, IBW y VAI.
-![Resultado de la ejecución de los tests](resources/p1/tests.png)
+### Tipos de test implementados
 
-### Informe de Cobertura
-Se ha logrado una cobertura de código del 100%, tal como se muestra en el informe generado por Jacoco:
-![Informe de cobertura al 100%](resources/p1/cobertura.png)
+1. **Pruebas unitarias (JUnit 5)**
+    - Verifican el cálculo matemático de cada métrica.
+    - Verifican validaciones de entrada (rangos, negativos, cero, sexo inválido, límites biológicos).
+    - Incluyen pruebas de frontera y casos representativos.
 
-</details>
+2. **Pruebas BDD (Cucumber + Gherkin en español)**
+    - Definen comportamiento funcional desde escenarios de usuario.
+    - Se ejecutan con `RunCucumberTest` y recorren los dos ficheros:
+      - `src/test/resources/features/IW.feature`
+      - `src/test/resources/features/VAI.feature`
+    - Generan informe HTML de ejecución en:
+      - `java-project-healthcalc/target/reporte.html`
+
+3. **Cobertura de código (JaCoCo)**
+    - Se ejecuta automáticamente al lanzar `mvn test`.
+    - Informe HTML disponible en:
+      - `java-project-healthcalc/target/site/jacoco/index.html`
+
+### Resumen de ejecución actual (Java)
+
+- Comando: `mvn test`
+- Resultado: **BUILD SUCCESS**
+- Total: **127 tests**
+- Fallos: **0**
+- Errores: **0**
+- Desglose relevante:
+  - **Cucumber (IW + VAI): 41 escenarios**
+  - **JUnit (unitarios): 86 tests**
+
+### Detalle VAI e IW: tests realizados
+
+#### IW (Ideal Weight)
+
+**Unitarios (`IWTest`)**
+- Casos correctos para hombre y mujer.
+- Validación de sexo inválido.
+- Validación de altura negativa, cero y fuera de rango biológico.
+- Casos de frontera y ejemplos representativos.
+
+**BDD (`IW.feature`)**
+- Escenarios de éxito (hombre/mujer).
+- Escenarios de error por sexo inválido.
+- Escenarios de error por altura negativa y límites biológicos.
+- Esquemas de escenario con múltiples ejemplos.
+
+#### VAI (Visceral Adiposity Index)
+
+**Unitarios (`VAITest`)**
+- Cálculo correcto para hombre y mujer.
+- Validaciones de sexo inválido.
+- Validaciones de TG, HDL, IMC y cintura con valores nulos/negativos.
+- Validaciones de límites biológicos máximos.
+
+**BDD (`VAI.feature`)**
+- Escenarios de éxito para ambos sexos.
+- Escenarios de error para entradas inválidas.
+- Escenarios con ejemplos para límites biológicos (TG, HDL, IMC, cintura).
+
+### Estado pendiente / mejoras recomendadas
+
+Aunque los tests actuales pasan y cubren correctamente VAI e IW, quedan mejoras posibles:
+
+1. **Soft limits (avisos clínicos)**
+    - Actualmente se validan hard limits (bloqueo), pero no hay flujo de aviso para valores inusuales no bloqueantes.
+
+2. **Trazabilidad requisito → test**
+    - Añadir una tabla explícita de trazabilidad para mapear cada requisito funcional/no funcional con sus tests unitarios y BDD.
+
+3. **Estandarizar reportes en CI**
+    - Publicar automáticamente `target/reporte.html` (Cucumber) y `target/site/jacoco/index.html` (JaCoCo) en pipeline.
