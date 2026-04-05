@@ -373,7 +373,8 @@ Siguiendo la metodología TDD y el patrón **AAA (Arrange, Act, Assert)**, el pr
 
 2. **Pruebas BDD (Cucumber + Gherkin en español)**
     - Definen comportamiento funcional desde escenarios de usuario.
-    - Se ejecutan con `RunCucumberTest` y recorren los dos ficheros:
+    - Se ejecutan con `RunCucumberTest` y recorren los tres ficheros:
+      - `src/test/resources/features/BMI.feature`
       - `src/test/resources/features/IW.feature`
       - `src/test/resources/features/VAI.feature`
     - Generan informe HTML de ejecución en:
@@ -388,16 +389,46 @@ Siguiendo la metodología TDD y el patrón **AAA (Arrange, Act, Assert)**, el pr
 
 - Comando: `mvn test`
 - Resultado: **BUILD SUCCESS**
-- Total: **127 tests**
+- Total: **139 tests**
 - Fallos: **0**
 - Errores: **0**
 - Desglose relevante:
-  - **Cucumber (IW + VAI): 41 escenarios**
+  - **Cucumber (BMI + IW + VAI): 53 escenarios**
   - **JUnit (unitarios): 86 tests**
 
-### Detalle VAI e IW: tests realizados
+### Detalle de Métricas: tests realizados
+
+#### BMI (Body Mass Index)
+
+**Enlace al fichero BDD:** [`BMI.feature`](java-project-healthcalc/src/test/resources/features/BMI.feature)
+
+**Historia de Usuario 1: Calcular BMI**
+> **As a** healthcare professional,
+> **I want** to calculate a patient's BMI using their weight and height,
+> **So that** I can obtain a standardized numerical value of their body mass.
+
+*Escenarios BDD:*
+- Escenario: Calcular BMI con datos válidos
+- Escenario: Calcular BMI con altura nula
+- Escenario: Calcular BMI con peso negativo
+- Escenario: Calcular BMI con peso biológicamente imposible
+
+**Historia de Usuario 2: Clasificación Completa (Full) del BMI**
+> **As a** healthcare professional,
+> **I want** to get the full clinical classification based on the BMI value,
+> **So that** I can evaluate the patient's nutritional status.
+
+*Escenarios BDD:*
+- Esquema del escenario: Clasificación completa del BMI (Cubre: *Severe thinness, Moderate thinness, Mild thinness, Normal weight, Overweight, Obese Class I, Obese Class II, Obese Class III*).
+
+**Unitarios (`BMITest`)**
+- Casos correctos matemáticos para el BMI y su clasificación.
+- Pruebas de frontera y valores límite exactos para cada rango de clasificación.
+- Validaciones de valores nulos, negativos y límites biológicos excedidos.
 
 #### IW (Ideal Weight)
+
+**Enlace al fichero BDD:** [`IW.feature`](java-project-healthcalc/src/test/resources/features/IW.feature)
 
 **Unitarios (`IWTest`)**
 - Casos correctos para hombre y mujer.
@@ -413,6 +444,8 @@ Siguiendo la metodología TDD y el patrón **AAA (Arrange, Act, Assert)**, el pr
 
 #### VAI (Visceral Adiposity Index)
 
+**Enlace al fichero BDD:** [`VAI.feature`](java-project-healthcalc/src/test/resources/features/VAI.feature)
+
 **Unitarios (`VAITest`)**
 - Cálculo correcto para hombre y mujer.
 - Validaciones de sexo inválido.
@@ -426,7 +459,7 @@ Siguiendo la metodología TDD y el patrón **AAA (Arrange, Act, Assert)**, el pr
 
 ### Estado pendiente / mejoras recomendadas
 
-Aunque los tests actuales pasan y cubren correctamente VAI e IW, quedan mejoras posibles:
+Aunque los tests actuales pasan y cubren correctamente BMI, VAI e IW, quedan mejoras posibles:
 
 1. **Soft limits (avisos clínicos)**
     - Actualmente se validan hard limits (bloqueo), pero no hay flujo de aviso para valores inusuales no bloqueantes.
@@ -436,3 +469,19 @@ Aunque los tests actuales pasan y cubren correctamente VAI e IW, quedan mejoras 
 
 3. **Estandarizar reportes en CI**
     - Publicar automáticamente `target/reporte.html` (Cucumber) y `target/site/jacoco/index.html` (JaCoCo) en pipeline.
+
+### Evidencias de ejecución BDD
+
+A continuación se muestran las capturas de la ejecución exitosa de todos los tests BDD implementados en la Práctica 3:
+
+**1. Ejecución de escenarios BMI:**
+![Ejecución BMI](doc/P3/bdd_bmi.png)
+
+**2. Ejecución de escenarios IW:**
+![Ejecución IW](doc/P3/bdd_iw.png)
+
+**3. Ejecución de escenarios VAI:**
+![Ejecución VAI](doc/P3/bdd_vai.png)
+
+**4. Resumen final (Build Success):**
+![Resumen de ejecución](doc/P3/bdd_summary.png)
