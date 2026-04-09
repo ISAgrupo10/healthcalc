@@ -23,10 +23,17 @@ import java.awt.Color;
 import javax.swing.JProgressBar;
 import javax.swing.JButton;
 
-public class HealthCalcVista extends JFrame {
 
+public class HealthCalcVista extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+
+	private JTextField textFieldPesoBMI;
+	private JTextField textFieldAlturaBMI;
+	private JButton btnCalcularBMI;
+	private JLabel lblResultadoBMI;
+
 	private JTextField textFieldIMC;
 	private JTextField textFieldTrigli;
 	private JTextField textFieldHDL;
@@ -38,6 +45,8 @@ public class HealthCalcVista extends JFrame {
 	private JLabel lblTrigliceridos;
 	private JLabel lblNewCircunf;
 	private JLabel lblHDL;
+
+	
 	
 
 	/**
@@ -74,8 +83,55 @@ public class HealthCalcVista extends JFrame {
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panelBMI = new JPanel();
+		panelBMI.setLayout(new BorderLayout(0, 0));
 		tabbedPane.addTab("Calcular BMI", null, panelBMI, null);
-		panelBMI.setLayout(new GridLayout(1, 0, 0, 0));
+
+		JPanel panelBMIForm = new JPanel();
+		panelBMI.add(panelBMIForm, BorderLayout.CENTER);
+		panelBMIForm.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
+
+		JLabel lblPesoBMI = new JLabel("Peso (kg)");
+		panelBMIForm.add(lblPesoBMI, "2, 2, left, default");
+
+		textFieldPesoBMI = new JTextField();
+		panelBMIForm.add(textFieldPesoBMI, "4, 2, fill, default");
+		textFieldPesoBMI.setColumns(10);
+
+		JLabel lblAlturaBMI = new JLabel("Altura (m)");
+		panelBMIForm.add(lblAlturaBMI, "2, 4, left, default");
+
+		textFieldAlturaBMI = new JTextField();
+		panelBMIForm.add(textFieldAlturaBMI, "4, 4, fill, default");
+		textFieldAlturaBMI.setColumns(10);
+
+		btnCalcularBMI = new JButton("Calcular BMI");
+		panelBMIForm.add(btnCalcularBMI, "4, 6");
+
+		JPanel panelBMIResultado = new JPanel();
+		panelBMI.add(panelBMIResultado, BorderLayout.SOUTH);
+
+		lblResultadoBMI = new JLabel("BMI: -");
+		panelBMIResultado.add(lblResultadoBMI);
+
+
+		
+		
+
 		
 		JPanel panelIBW = new JPanel();
 		tabbedPane.addTab("Calcular IBW", null, panelIBW, null);
@@ -199,5 +255,21 @@ public class HealthCalcVista extends JFrame {
 	// LABEL RESULTADO
 	public JLabel getLblResultadoVAI() {
 	    return lblResultadoVAI;
+	}
+
+	public JTextField getTextFieldPesoBMI() {
+		return textFieldPesoBMI;
+	}
+
+	public JTextField getTextFieldAlturaBMI() {
+		return textFieldAlturaBMI;
+	}
+
+	public JButton getBtnCalcularBMI() {
+		return btnCalcularBMI;
+	}
+
+	public JLabel getLblResultadoBMI() {
+		return lblResultadoBMI;
 	}
 }
