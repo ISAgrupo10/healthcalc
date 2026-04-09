@@ -19,9 +19,33 @@ public class HealthCalcController {
     }
 
     private void initController() {
-    	
+
+    view.getBtnCalcularBMI().addActionListener(e -> calcularBMI());	
     view.getBtnCalcularVAI().addActionListener(e -> calcularVAI());
     }
+
+	private void calcularBMI() {
+    try {
+        double peso = Double.parseDouble(view.getTextFieldPesoBMI().getText());
+        double altura = Double.parseDouble(view.getTextFieldAlturaBMI().getText());
+
+        double resultado = model.bmi(peso, altura);
+        String clasificacion = model.bmiClassification(resultado);
+
+        view.getLblResultadoBMI().setForeground(new Color(0, 128, 0));
+        view.getLblResultadoBMI().setText(
+            String.format("BMI: %.2f | Classification: %s", resultado, clasificacion)
+        );
+
+    } catch (InvalidHealthDataException e) {
+        view.getLblResultadoBMI().setForeground(Color.RED);
+        view.getLblResultadoBMI().setText(e.getMessage());
+
+    } catch (NumberFormatException e) {
+        view.getLblResultadoBMI().setForeground(Color.RED);
+        view.getLblResultadoBMI().setText("Error: Invalid values");
+    }
+}
 
 	private void calcularVAI() {
 		try {
