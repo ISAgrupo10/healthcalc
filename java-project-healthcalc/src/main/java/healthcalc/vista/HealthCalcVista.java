@@ -7,20 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import javax.swing.JTabbedPane;
-import java.awt.GridLayout;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JLabel;
-import javax.swing.JSpinner;
-import javax.swing.JFormattedTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.Color;
-import javax.swing.JProgressBar;
 import javax.swing.JButton;
 import java.awt.Font;
 
@@ -47,6 +42,18 @@ public class HealthCalcVista extends JFrame {
 	private JLabel lblHDL;
 	private JPanel panel_6;
 	private JLabel lblTituloVAI;
+
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JLabel lblResultIBW;
+	private JLabel lblAlturaIBW;
+	private JLabel lblNewLabel_1;
+	private JTextField textFieldAlturaIBW;
+	private JComboBox<String> comboBoxIBWSexo;
+	private JPanel panel_5;
+	private JLabel lblNewLabel;
+	private JButton btnCalcularIBW;
 
 	/**
 	 * Launch the application.
@@ -137,6 +144,83 @@ public class HealthCalcVista extends JFrame {
 
 		JPanel panelIBW = new JPanel();
 		tabbedPane.addTab("Calcular IBW", null, panelIBW, null);
+		panelIBW.setLayout(new BorderLayout(0, 0));
+
+		panel_2 = new JPanel();
+		panelIBW.add(panel_2, BorderLayout.CENTER);
+		panel_2.setLayout(new BorderLayout(0, 0));
+
+		panel_5 = new JPanel();
+		panel_2.add(panel_5, BorderLayout.NORTH);
+
+		lblNewLabel = new JLabel("¡Bienvenido a la calculadora de IBW!");
+		lblNewLabel.setFont(new Font("Rockwell Nova", Font.PLAIN, 18));
+		panel_5.add(lblNewLabel);
+
+		panel_3 = new JPanel();
+		panel_2.add(panel_3, BorderLayout.CENTER);
+		panel_3.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),},
+			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
+
+		lblAlturaIBW = new JLabel("Altura (cm): ");
+		lblAlturaIBW.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
+		panel_3.add(lblAlturaIBW, "8, 6, right, default");
+
+		textFieldAlturaIBW = new JTextField();
+		panel_3.add(textFieldAlturaIBW, "10, 6, fill, default");
+		textFieldAlturaIBW.setColumns(10);
+
+		lblNewLabel_1 = new JLabel("Sexo: ");
+		lblNewLabel_1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+		lblNewLabel_1.setFont(new Font("Rockwell Nova", Font.PLAIN, 12));
+		panel_3.add(lblNewLabel_1, "8, 12, right, default");
+
+		comboBoxIBWSexo = new JComboBox();
+		comboBoxIBWSexo.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Femenino"}));
+		panel_3.add(comboBoxIBWSexo, "10, 12, fill, default");
+
+		btnCalcularIBW = new JButton("Calcular IBW");
+		btnCalcularIBW.setFont(new Font("Rockwell Nova", Font.PLAIN, 11));
+		panel_3.add(btnCalcularIBW, "10, 16");
+
+		panel_4 = new JPanel();
+		panel_2.add(panel_4, BorderLayout.SOUTH);
+
+		lblResultIBW = new JLabel("IBW: -");
+		lblResultIBW.setFont(new Font("Rockwell Nova", Font.PLAIN, 14));
+		panel_4.add(lblResultIBW);
 		
 		JPanel panelVAI = new JPanel();
 		panelVAI.setLayout(new FormLayout(new ColumnSpec[] {
@@ -243,7 +327,6 @@ public class HealthCalcVista extends JFrame {
 		panel_1.add(lblResultadoVAI);
 	}
 
-	// TEXTFIELDS
 	public JTextField getTextFieldIMC() {
 	    return textFieldIMC;
 	}
@@ -260,17 +343,14 @@ public class HealthCalcVista extends JFrame {
 	    return textFieldCircunf;
 	}
 
-	// COMBOBOX
 	public JComboBox<String> getComboBoxVAISexo() {
 	    return comboBoxVAISexo;
 	}
 
-	// BOTÓN
 	public JButton getBtnCalcularVAI() {
 	    return btnCalcularVAI;
 	}
 
-	// LABEL RESULTADO
 	public JLabel getLblResultadoVAI() {
 	    return lblResultadoVAI;
 	}
@@ -289,5 +369,21 @@ public class HealthCalcVista extends JFrame {
 
 	public JLabel getLblResultadoBMI() {
 		return lblResultadoBMI;
+	}
+
+	public JComboBox<String> getcomboBoxIBWSexo() {
+	    return comboBoxIBWSexo;
+	}
+	
+	public JLabel getLblResultadoIBW() {
+	    return lblResultIBW;
+	}
+	
+	public JButton getBtnCalcularIBW() {
+	    return btnCalcularIBW;
+	}
+	
+	public JTextField getTextFieldAlturaIBW() {
+	    return textFieldAlturaIBW;
 	}
 }
