@@ -33,17 +33,24 @@ public class HealthCalcController {
             String clasificacion = model.bmiClassification(resultado);
 
             view.getLblResultadoBMI().setForeground(new Color(0, 128, 0));
-            view.getLblResultadoBMI().setText(
-                String.format("BMI: %.2f | Classification: %s", resultado, clasificacion)
-            );
+            view.getLblClasificacionBMI().setForeground(new Color(0, 128, 0));
+
+            view.getLblResultadoBMI().setText(String.format("BMI: %.2f", resultado));
+            view.getLblClasificacionBMI().setText("Clasificación: " + clasificacion);
 
         } catch (InvalidHealthDataException e) {
             view.getLblResultadoBMI().setForeground(Color.RED);
-            view.getLblResultadoBMI().setText(e.getMessage());
+            view.getLblClasificacionBMI().setForeground(Color.RED);
+
+            view.getLblResultadoBMI().setText("BMI: -");
+            view.getLblClasificacionBMI().setText(e.getMessage());
 
         } catch (NumberFormatException e) {
             view.getLblResultadoBMI().setForeground(Color.RED);
-            view.getLblResultadoBMI().setText("Error: Invalid values");
+            view.getLblClasificacionBMI().setForeground(Color.RED);
+
+            view.getLblResultadoBMI().setText("BMI: -");
+            view.getLblClasificacionBMI().setText("Error: Invalid values");
         }
     }
 
