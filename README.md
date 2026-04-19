@@ -5,6 +5,22 @@ El [Hospital Universitario Virgen de la Victoria (El Clínico)](https://www.sspa
 
 ![MOdelo de características de la calculadora de salud.](resources/images/healthcalc_fm.png)
 
+## Interfaz de Usuario
+
+A continuación se muestra el boceto de diseño de la interfaz gráfica de la **Calculadora de Salud**, que ilustra la disposición y organización de los componentes de la aplicación:
+
+![Boceto de la Calculadora de Salud - HealthCalc](doc/P4/boceto.PNG)
+
+**Descripción del boceto:** La interfaz está organizada en una ventana principal con tres pestañas (`JTabbedPane`) que permiten acceder a cada uno de los cálculos disponibles:
+
+1. **Pestaña "Calcular BMI"**: Contiene campos de entrada para peso (kg) y altura (cm), un botón para ejecutar el cálculo, y etiquetas de resultado que muestran tanto el valor numérico del IMC como su clasificación clínica (Normal, Sobrepeso, Obesidad, etc.) con código de colores para facilitar la interpretación visual.
+
+2. **Pestaña "Calcular IBW"**: Permite ingresar la altura en centímetros y seleccionar el sexo del paciente (Hombre/Mujer) mediante un selector, botón de cálculo y resultado del peso corporal ideal según la fórmula de Lorentz.
+
+3. **Pestaña "Calcular VAI"**: Requiere múltiples métricas (IMC, circunferencia de cintura, triglicéridos, HDL) y sexo del paciente para calcular el Índice de Adiposidad Visceral, proporcionando un indicador de riesgo cardiometabólico.
+
+La interfaz utiliza un diseño limpio y funcional con layouts en `GridBag` y `FormLayout` para una distribución óptima de componentes, facilitando la interacción y legibilidad de los resultados clínicos.
+
 ## Requisitos  
 
 <details>
@@ -358,6 +374,27 @@ Para garantizar que la calculadora sea fiable y segura, se han definido los sigu
 
 </details>
 
+<details>
+<summary><b>Ejecutable JAR (Recomendado)</b></summary>
+
+### Requisito
+- Java Runtime Environment (JRE) 18 o superior instalado en el sistema
+
+### Ejecución del fichero JAR
+El fichero ejecutable `HealthCalc.jar` se encuentra en la **raíz del repositorio** y puede ser ejecutado de dos formas:
+
+1. **Doble clic directo:** 
+   - En sistemas operativos con GUI (Windows, macOS, Linux con entorno gráfico), simplemente haz doble clic sobre el fichero `HealthCalc.jar` para lanzar la aplicación.
+
+2. **Terminal (Línea de comandos):**
+   ```bash
+   java -jar HealthCalc.jar
+   ```
+
+Esta es la forma más rápida y conveniente de ejecutar la aplicación, ya que no requiere compilación ni herramientas adicionales, únicamente Java instalado.
+
+</details>
+
 ---
 
 ## Resultados de pruebas, BDD y cobertura
@@ -372,6 +409,7 @@ Siguiendo la metodología TDD y el patrón **AAA (Arrange, Act, Assert)**, el pr
     - Incluyen pruebas de frontera y casos representativos.
 
 2. **Pruebas BDD (Cucumber + Gherkin en español)**
+El uso de BDD permite validar el comportamiento del sistema desde el punto de vista del usuario final, asegurando que las funcionalidades implementadas cumplen con los requisitos definidos.
     - Definen comportamiento funcional desde escenarios de usuario.
     - Se ejecutan con `RunCucumberTest` y recorren los tres ficheros:
       - `src/test/resources/features/BMI.feature`
@@ -469,7 +507,6 @@ Aunque los tests actuales pasan y cubren correctamente BMI, VAI e IW, quedan mej
 
 3. **Estandarizar reportes en CI**
     - Publicar automáticamente `target/reporte.html` (Cucumber) y `target/site/jacoco/index.html` (JaCoCo) en pipeline.
-
 ### Evidencias de ejecución BDD
 
 A continuación se muestran las capturas de la ejecución exitosa de todos los tests BDD implementados en la Práctica 3:
